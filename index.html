@@ -2,7 +2,7 @@
 <html>
 <body>
 <h3><center>Enter URL for Airlines List XML File</center></h3>
-<form style="text-align: center;">
+<form style="text-align: center;" onsubmit="return getURL()">
   <input type="text" name="urlstring" id="urlstring">
   <br>
   <button type="button" onclick="getURL()">Submit Qeury</button>
@@ -35,6 +35,10 @@ function loadXMLDoc(inputurl) {
     if (this.readyState == 4 && this.status == 200) {
       myFunction(this);
     }
+    else if(this.status==404)
+    {
+      alert("url not found");
+    }
   };
   xmlhttp.open("GET", inputurl, false);
   xmlhttp.send();
@@ -43,6 +47,11 @@ function loadXMLDoc(inputurl) {
 function myFunction(xml) {
   var x, i, xmlDoc, txt,rows,headers;
   xmlDoc = xml.responseXML;
+   if(xmlDoc==null)
+   {
+      alert("invalid xml file");
+      return;
+   }
   txt = "<table style='width:100%' border='1'>";
   headers = xmlDoc.getElementsByTagName("Data");
   txt += "<tr>"
