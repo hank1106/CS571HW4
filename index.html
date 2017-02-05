@@ -8,14 +8,18 @@
   <button type="button" onclick="getURL()">Submit Qeury</button>
 </form> 
 
-
-<p id="demo"></p>
-
 <script>
 function getURL()
 {
   var url = document.getElementById("urlstring").value;
-  loadXMLDoc(url);
+  if(url=='')
+  {
+    alert("invalid url");
+  }
+  else
+  {
+    loadXMLDoc(url);
+  }
 }
 
 function loadXMLDoc(inputurl) {
@@ -106,8 +110,10 @@ function myFunction(xml) {
     }
     txt+="</tr>";
   }
-  txt+="</table>"
-  document.getElementById("demo").innerHTML = txt;
+  txt+="</table>";
+  var myWindow = window.open("", "MsgWindow", "width=1100,height=800,left=100");
+  myWindow.document.write(txt);
+  //document.getElementById("demo").innerHTML = txt;
 }
 </script>
 
