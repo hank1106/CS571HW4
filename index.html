@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
 <body>
+<br><br><br><br>
 <h3><center>Enter URL for Airlines List XML File</center></h3>
 <form style="text-align: center;" onsubmit="return getURL()">
   <input type="text" name="urlstring" id="urlstring">
-  <br>
-  <button type="button" onclick="getURL()">Submit Qeury</button>
+  <br><br>
+  <button type="button" style="background-color: #B8B8B8;border: none;color:black;border-radius: 3px;padding:5px;" onclick="getURL()">Submit Qeury</button>
 </form> 
 
 <script>
@@ -33,7 +34,7 @@ function loadXMLDoc(inputurl) {
   }
   xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      myFunction(this);
+      printTable(this);
     }
     else if(this.status==404)
     {
@@ -44,12 +45,12 @@ function loadXMLDoc(inputurl) {
   xmlhttp.send();
 }
 
-function myFunction(xml) {
+function printTable(xml) {
   var x, i, xmlDoc, txt,rows,headers;
   xmlDoc = xml.responseXML;
    if(xmlDoc==null)
    {
-      alert("invalid xml file");
+      alert("Error in XML file");
       return;
    }
   txt = "<table style='width:100%' border='1'>";
@@ -61,6 +62,11 @@ function myFunction(xml) {
   }
   txt += "</tr>"
   rows = xmlDoc.getElementsByTagName("Row");
+  if(xmlDoc.getElementsByTagName("Row").length==0)
+  {
+    alert("Error in XML file");
+    return;
+  }
   for (i = 0; i< rows.length; i++) {
     txt+="<tr>"
     if(rows[i].getElementsByTagName("Airline")[0].childNodes.length==0)
