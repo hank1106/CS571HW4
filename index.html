@@ -59,7 +59,7 @@ function printTable(xml) {
   txt += "<tr>"
   for(j = 0; j < headers.length; j++)
   {
-    txt+="<th>"+headers[j].childNodes[0].nodeValue+"</th>";
+    txt+="<th>"+headers[j].childNodes[0].nodeValue.trim()+"</th>";
   }
   txt += "</tr>"
   rows = xmlDoc.getElementsByTagName("Row");
@@ -76,7 +76,7 @@ function printTable(xml) {
     }
     else
     {
-      txt+="<td>"+rows[i].getElementsByTagName("Airline")[0].childNodes[0].nodeValue+"</td>";
+      txt+="<td>"+rows[i].getElementsByTagName("Airline")[0].childNodes[0].nodeValue.trim()+"</td>";
     }
     if(rows[i].getElementsByTagName("IATA")[0].childNodes.length==0)
     {
@@ -84,7 +84,7 @@ function printTable(xml) {
     }
     else
     {
-      txt+="<td>"+rows[i].getElementsByTagName("IATA")[0].childNodes[0].nodeValue+"</td>";
+      txt+="<td>"+rows[i].getElementsByTagName("IATA")[0].childNodes[0].nodeValue.trim()+"</td>";
     }    
     var hubs = rows[i].getElementsByTagName("Hub");
     txt+="<td><ul>";
@@ -98,7 +98,7 @@ function printTable(xml) {
         }
         else
         {
-          txt += "<li><b>"+hubs[k].childNodes[0].nodeValue + "</b></li><br>";
+          txt += "<li><b>"+hubs[k].childNodes[0].nodeValue.trim() + "</b></li><br>";
         }
       }
       else
@@ -109,7 +109,7 @@ function printTable(xml) {
         }
         else
         {
-          txt += "<li>"+hubs[k].childNodes[0].nodeValue + "</li><br>";
+          txt += "<li>"+hubs[k].childNodes[0].nodeValue.trim() + "</li><br>";
         }
       }
     }
@@ -120,7 +120,7 @@ function printTable(xml) {
     }
     else
     {
-      txt+="<td width='300'>"+rows[i].getElementsByTagName("Notes")[0].childNodes[0].nodeValue+"</td>";
+      txt+="<td width='300'>"+rows[i].getElementsByTagName("Notes")[0].childNodes[0].nodeValue.trim()+"</td>";
     }
     if(rows[i].getElementsByTagName("HomePage")[0].childNodes.length==0)
     {
@@ -136,7 +136,7 @@ function printTable(xml) {
     }
     else
     {
-      txt+="<td><img width='350' src='" + rows[i].getElementsByTagName("Plane")[0].childNodes[0].nodeValue + "'></td>";
+      txt+="<td><img width='350' src='" + rows[i].getElementsByTagName("Plane")[0].childNodes[0].nodeValue.trim() + "'></td>";
     }
     txt+="</tr>";
   }
