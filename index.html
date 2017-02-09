@@ -3,16 +3,16 @@
 <body>
 <br><br><br><br>
 <h3><center>Enter URL for Airlines List XML File</center></h3>
-<form style="text-align: center;" onsubmit="return getURL()">
+<form style="text-align: center;">
   <input type="text" name="urlstring" id="urlstring">
   <br><br>
-  <button type="button" style="background-color: #B8B8B8;border: none;color:black;border-radius: 3px;padding:5px;" onclick="getURL()">Submit Qeury</button>
+  <input type="submit" value = "Submit Query" style="background-color: #B8B8B8;border: none;color:black;border-radius: 3px;padding:5px;" onclick="getURL()"></input>
 </form> 
 
 <script>
 function getURL()
 {
-  var url = document.getElementById("urlstring").value;
+  var url = document.getElementById("urlstring").value.trim();
   if(url=='')
   {
     alert("invalid url");
@@ -39,6 +39,7 @@ function loadXMLDoc(inputurl) {
     else if(this.status==404)
     {
       alert("url not found");
+      return;
     }
   };
   xmlhttp.open("GET", inputurl, false);
@@ -91,11 +92,25 @@ function printTable(xml) {
     {
       if(k==0)
       {
-        txt += "<li><b>"+hubs[k].childNodes[0].nodeValue + "</b></li><br>";
+        if(hubs[k].childNodes[0]==null)
+        {
+          txt += "<li></li><br>";
+        }
+        else
+        {
+          txt += "<li><b>"+hubs[k].childNodes[0].nodeValue + "</b></li><br>";
+        }
       }
       else
       {
-        txt += "<li>"+hubs[k].childNodes[0].nodeValue + "</li><br>";
+        if(hubs[k].childNodes[0]==null)
+        {
+          txt += "<li></li><br>";
+        }
+        else
+        {
+          txt += "<li>"+hubs[k].childNodes[0].nodeValue + "</li><br>";
+        }
       }
     }
     txt+="</ul></td>";
@@ -131,7 +146,7 @@ function printTable(xml) {
   //document.getElementById("demo").innerHTML = txt;
 }
 </script>
-
+<noscript>
 </body>
 </html>
 
