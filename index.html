@@ -65,7 +65,7 @@ function printTable(xml) {
   rows = xmlDoc.getElementsByTagName("Row");
   if(xmlDoc.getElementsByTagName("Row").length==0)
   {
-    alert("Error in XML file");
+    alert("The XML file contains no airline companies!");
     return;
   }
   for (i = 0; i< rows.length; i++) {
